@@ -56,12 +56,14 @@ def simplificar_expresion(expresion_str):
     # Ordenar las variables por el orden en que aparecen en la expresión
     orden_variables.sort(key=lambda x: expresion_str.index(str(x[0])))
 
-    # Añadir orden de las variables que ya hemos sustituido
-    exprString =str(exp_simpl_menor)
+    exprString = str(exp_simpl_menor)
     variables_no_presentes = [var for var in variables if var not in exp_simpl_menor.free_symbols]
+    OrdenVariables.append(minop)
+    # Luego agregar las otras variables que no están en exp_simpl_menor
     for var in variables_no_presentes:
         if var not in OrdenVariables:
-            OrdenVariables.append(str(var))
+            OrdenVariables.append(var)
+            
     # Imprimir la variable con menos operacione
     print(f"\nVariable con menos operaciones: {minop} y la función resultante es {exp_simpl_menor} ")
     return exprString
@@ -77,6 +79,7 @@ while True:
             OrdenVariables.append(resultado)
         break
     expresion_str = resultado
-    print(expresion_str)
-    
+
+
+OrdenVariables = [str(elemento) for elemento in OrdenVariables]  
 print(OrdenVariables)
